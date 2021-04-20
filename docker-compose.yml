@@ -1,5 +1,19 @@
 version: '3'
 services:
+  pgsql:
+    image: 3liz/postgis:11-2.5
+    environment:
+      POSTGRES_DB: lizmap
+      POSTGRES_PASSWORD: lizmap1234!
+      POSTGRES_USER: lizmap
+    volumes:
+      - ${LIZMAP_DIR}/pg_data:/var/lib/postgresql/data
+    ports:
+      - ${LZMPGPORT}:5432
+    networks:
+      default:
+        aliases:
+          - db.lizmap.local
   lizmap:
     image: 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
     environment:
