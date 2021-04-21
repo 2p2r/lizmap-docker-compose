@@ -6,6 +6,8 @@ LIZMAP_USER_GID:=$(shell id -g)
 
 LIZMAP_VERSION_TAG:=3.4
 QGIS_VERSION_TAG:=3.10
+POSTGIS_VERSION_TAG:=11-2.5
+
 
 QGIS_MAP_WORKERS:=1
 WPS_NUM_WORKERS:=1
@@ -13,10 +15,7 @@ WPS_NUM_WORKERS:=1
 LIZMAP_PORT:=127.0.0.1:8090
 OWS_PORT:=127.0.0.1:8091
 WPS_PORT:=127.0.0.1:8092
-
-LIZMAP_DIR=$(shell pwd)/lizmap
-LIZMAP_USER_ID:=$(shell id -u)
-LIZMAP_USER_GID:=$(shell id -g)
+LIZMAP_POSTGRESQL_PORT:=5432
 
 env:
 	@mkdir -p $(LIZMAP_DIR)/www/var/log \
@@ -30,9 +29,11 @@ env:
 		echo "LIZMAP_USER_GID=$(LIZMAP_USER_GID)" >> .env;\
 		echo "LIZMAP_VERSION_TAG=$(LIZMAP_VERSION_TAG)" >> .env;\
 		echo "QGIS_VERSION_TAG=$(QGIS_VERSION_TAG)" >> .env;\
+		echo "POSTGIS_VERSION_TAG=$(POSTGIS_VERSION_TAG)" >> .env;\
 		echo "QGIS_MAP_WORKERS=$(QGIS_MAP_WORKERS)" >> .env;\
 		echo "WPS_NUM_WORKERS=$(WPS_NUM_WORKERS)" >> .env;\
 		echo "LIZMAP_PORT=$(LIZMAP_PORT)" >> .env;\
+		echo "LIZMAP_POSTGRESQL_PORT=$(LIZMAP_POSTGRESQL_PORT)" >> .env;\
 		echo "OWS_PORT=$(OWS_PORT)" >> .env;\
 		echo "WPS_PORT=$(WPS_PORT)" >> .env;\
 	}
@@ -68,5 +69,6 @@ pull:
 	docker pull 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
 	docker pull 3liz/qgis-map-server:${QGIS_VERSION_TAG}
 	docker pull 3liz/qgis-wps:${QGIS_VERSION_TAG}
+	docker pull 3liz/postgis:${POSTGIS_VERSION_TAG}
 
 
