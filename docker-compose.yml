@@ -1,5 +1,23 @@
 version: '3'
+networks:
+  picnet:
+    external: true
 services:
+  pgsql:
+    image: 3liz/postgis:${POSTGIS_VERSION_TAG}
+    environment:
+      POSTGRES_DB: lizmap
+      POSTGRES_PASSWORD: NpAG38b1*1PBS&I#
+      POSTGRES_USER: lizmapuser
+    volumes:
+      - ${LIZMAP_DIR}/pg_data:/var/lib/postgresql/data
+      - ${LIZMAP_DIR}/pg_run:/var/run/postgresql
+    ports:
+      - ${LIZMAP_POSTGRESQL_PORT}:5432
+    networks:
+      default:
+        aliases:
+          - db.lizmap.local
   lizmap:
     image: 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
     environment:
@@ -53,8 +71,13 @@ services:
       - ${LIZMAP_DIR}/var/log/nginx:/var/log/nginx
       - ${LIZMAP_DIR}/var/nginx-cache:/var/cache/nginx
       - ${LIZMAP_DIR}:/srv/lizmap
+    environment:
+            VIRTUAL_HOST: carto2p2r.picttn.le-pic.org,velomax.picttn.le-pic.org
+            VIRTUAL_PORT: "8080"
+    networks:
+        - picnet
+        - default
     ports:
-      - ${LIZMAP_PORT}:8080
+        - ${LIZMAP_PORT}:8080
     depends_on:
       - lizmap
-
