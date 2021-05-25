@@ -1,9 +1,5 @@
 .PHONY: env
 
-LIZMAP_DIR=$(shell pwd)/lizmap
-LIZMAP_USER_ID:=$(shell id -u)
-LIZMAP_USER_GID:=$(shell id -g)
-
 LIZMAP_VERSION_TAG:=3.4
 QGIS_VERSION_TAG:=3.10
 POSTGIS_VERSION_TAG:=11-2.5
@@ -16,6 +12,10 @@ LIZMAP_PORT:=127.0.0.1:8090
 OWS_PORT:=127.0.0.1:8091
 WPS_PORT:=127.0.0.1:8092
 LIZMAP_POSTGRESQL_PORT:=5432
+
+LIZMAP_DIR=$(shell pwd)/lizmap
+LIZMAP_USER_ID:=$(shell id -u)
+LIZMAP_USER_GID:=$(shell id -g)
 
 env:
 	@mkdir -p $(LIZMAP_DIR)/www/var/log \
