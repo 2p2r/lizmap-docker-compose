@@ -12,6 +12,10 @@ OWS_PORT:=127.0.0.1:8091
 WPS_PORT:=127.0.0.1:8092
 LIZMAP_POSTGRESQL_PORT:=5432
 
+LIZMAP_DIR=$(shell pwd)/lizmap
+LIZMAP_USER_ID:=$(shell id -u)
+LIZMAP_USER_GID:=$(shell id -g)
+
 env:
 	@mkdir -p $(LIZMAP_DIR)/www/var/log \
 			  $(LIZMAP_DIR)/var/log/nginx \

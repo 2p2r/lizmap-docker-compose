@@ -11,7 +11,6 @@ services:
       POSTGRES_USER: lizmapuser
     volumes:
       - ${LIZMAP_DIR}/pg_data:/var/lib/postgresql/data
-      - ${LIZMAP_DIR}/pg_run:/var/run/postgresql
     ports:
       - ${LIZMAP_POSTGRESQL_PORT}:5432
     networks:
