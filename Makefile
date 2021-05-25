@@ -1,9 +1,8 @@
 .PHONY: env
 
 LIZMAP_VERSION_TAG:=3.4
-QGIS_VERSION_TAG:=3.10
 POSTGIS_VERSION_TAG:=11-2.5
-
+QGIS_VERSION_TAG:=3.16
 
 QGIS_MAP_WORKERS:=1
 WPS_NUM_WORKERS:=1
@@ -21,6 +20,9 @@ env:
 	@mkdir -p $(LIZMAP_DIR)/www/var/log \
 			  $(LIZMAP_DIR)/var/log/nginx \
 			  $(LIZMAP_DIR)/var/nginx-cache \
+			  $(LIZMAP_DIR)/var/lizmap-theme-config \
+			  $(LIZMAP_DIR)/var/lizmap-db \
+			  $(LIZMAP_DIR)/var/lizmap-config \
 			  $*
 	@@{\
 		echo "Creating environment file for docker-compose";\
