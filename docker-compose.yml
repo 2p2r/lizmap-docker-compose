@@ -38,6 +38,7 @@ services:
       - ${LIZMAP_DIR}/www:/www/lizmap/www
       - ${LIZMAP_DIR}/www/var/log:/www/lizmap/var/log
       - ${LIZMAP_DIR}/etc:/srv/etc:ro
+      - ${LIZMAP_DIR}/etc/lizmapconfig.ini:/etc/php7/conf.d/lizmapconfig.ini
     command:
       - php-fpm
     restart: unless-stopped
